@@ -11,7 +11,17 @@ class PropertyController extends Controller
         //conexao com o banco
         $properties = DB::select('SELECT * FROM properties');
 
-        return view('property/index')->with('properties', $properties);//with -> jogando a variavel para a view
+        return view('property/index')->with('properties', $properties);//with -> jogando o objeto para a view
+    }
+
+    public function show($id){
+        $property = DB::select('SELECT * FROM properties WHERE id = ?', [$id]);
+
+        if(!empty($property)) {
+            return view('property/show')->with('property', $property);
+        } else{
+            return redirect()->action('PropertyController@index');
+        }
     }
 
     public function create() {
