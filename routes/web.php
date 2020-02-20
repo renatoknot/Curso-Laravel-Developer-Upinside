@@ -18,7 +18,9 @@ Route::get('/', function () {
 Route::get('/imoveis', 'PropertyController@index');//apos o @ é o metodo
 
 Route::get('/imoveis/novo','PropertyController@create');
-
 Route::post('/imoveis/store','PropertyController@store');//cadastrar imóvel
 
-Route::get('/imoveis/{id}', 'PropertyController@show'); //visualizar mais
+Route::get('/imoveis/{name}', 'PropertyController@show'); //visualizar mais
+
+Route::get('/imoveis/editar/{name}','PropertyController@edit');
+Route::post('/imoveis/update/{name}','PropertyController@update');//cadastrar imóvel
