@@ -23,4 +23,4 @@ Route::post('/imoveis/store','PropertyController@store');//cadastrar imóvel
 Route::get('/imoveis/{name}', 'PropertyController@show'); //visualizar mais
 
 Route::get('/imoveis/editar/{name}','PropertyController@edit');
-Route::post('/imoveis/update/{name}','PropertyController@update');//cadastrar imóvel
+Route::put('/imoveis/update/{name}','PropertyController@update');//atualizar imovel

@@ -46,6 +46,11 @@ class PropertyController extends Controller
 
     public function edit($name){
         $property = DB::select('SELECT * FROM properties WHERE name = ?', [$name]);
+        if(!empty($property)){
+            return view('property/edit')->with('property', $property);
+        } else {
+            return redirect()->action('PropertyController@index');
+        }
     }
 
     public function update($name){
