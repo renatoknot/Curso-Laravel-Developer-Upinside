@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -10,13 +11,15 @@ class PropertyController extends Controller
 {
     public function index() {
         //conexao com o banco
-        $properties = DB::select('SELECT * FROM properties');
+        // $properties = DB::select('SELECT * FROM properties'); Editando para inserir o Model
+        $properties = Property::all();//faz o mesmo da instrução acima
 
         return view('property/index')->with('properties', $properties);//with -> jogando o objeto para a view
     }
 
     public function show($name){
-        $property = DB::select('SELECT * FROM properties WHERE name = ?', [$name]);
+        // $property = DB::select('SELECT * FROM properties WHERE name = ?', [$name]); FAZENDOA  CONSULTA PELO MODEL
+        $property = Property::where('name', $name)->get(); //faz o mesmo que o cod acima
 
         if(!empty($property)) {
             return view('property/show')->with('property', $property);
@@ -45,7 +48,7 @@ class PropertyController extends Controller
     }
 
     public function edit($name){
-        $property = DB::select('SELECT * FROM properties WHERE name = ?', [$name]);
+        $property = Property::where('name', $name)->get();
         if(!empty($property)){
             return view('property/edit')->with('property', $property);
         } else {
@@ -84,7 +87,8 @@ class PropertyController extends Controller
 
         $t = 0;
 
-        $properties = DB::select('SELECT * FROM properties');
+        // $properties = DB::select('SELECT * FROM properties');
+        $properties = Property::all();
 
         foreach($properties as $property) { //verifica se ja há algum imovel com o mesmo titulo, caso tenha, ira adicionar um numero no final da url com a varivael $t
             if(Str::slug($property->title) === $propertySlug){
