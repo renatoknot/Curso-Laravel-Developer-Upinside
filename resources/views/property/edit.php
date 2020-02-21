@@ -2,8 +2,10 @@
 
 <? $property = $property[0];?>
 
-<form method="post" action="<?=url('/imoveis/store');?>">
+<form method="post" action="<?=url('/imoveis/update', ['id' => $property->id]);?>">
      <?=csrf_field();?> <!--Gera um input hidden com um token -->
+    <?=method_field('PUT');?> <!--Informando que é um metodo put-->
+
 
     <label for="title">Título do Imóvel</label>
     <input type="text" name="title" id="title" value="<?=$property->title;?>"><br>
@@ -17,5 +19,5 @@
     <label for="sale_price">Valor de Venda</label>
     <input type="text" name="sale_price" id="sale_price" value="<?=$property->sale_price;?>"><br>
 
-    <button type="submit">Cadastrar Imóvel</button>
+    <button type="submit">Editar Imóvel</button>
 </form>

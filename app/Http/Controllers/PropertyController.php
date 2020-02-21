@@ -53,8 +53,21 @@ class PropertyController extends Controller
         }
     }
 
-    public function update($name){
+    public function update(Request $request, $id){
+        $propertySlug = $this->setName($request->title);
 
+        $property = [
+            $request->title,
+            $propertySlug,
+            $request->description,
+            $request->rental_price,
+            $request->sale_price,
+            $id
+        ];
+        DB::update('UPDATE properties SET
+        title = ?, name = ?, description = ?, rental_price = ?, sale_price = ? WHERE id = ?', $property);
+
+        return redirect()->action('PropertyController@index');
     }
 
     private function setName($title){ //gerar a url amigavel
