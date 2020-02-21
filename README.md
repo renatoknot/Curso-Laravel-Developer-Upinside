@@ -1,6 +1,8 @@
 "# Curso-Laravel-Developer-Upinside" 
-"# Curso-Laravel-Developer-Upinside" 
 
+Primeiro projeto do curso, um CRUD de cadastro de imóveis, mostrando um pouco sobre o padrão MVC
+
+Repo parte 2: 
 
 Pensando em como fazer as anotações, tive a idéia de deixar registrado comandos e o que for passado na aula, neste documento online
 
