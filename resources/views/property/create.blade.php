@@ -1,3 +1,7 @@
+@extends('property.master')
+
+@section('content')
+
 <h1>Formulário de Cadastro :: Imóveis</h1>
 <form method="post" action="<?=url('/imoveis/store');?>">
      <?=csrf_field();?> <!--Gera um input hidden com um token -->
@@ -16,3 +20,4 @@
 
     <button type="submit">Cadastrar Imóvel</button>
 </form>
+@endsection

@@ -14,7 +14,7 @@ class PropertyController extends Controller
         // $properties = DB::select('SELECT * FROM properties'); Editando para inserir o Model
         $properties = Property::all();//faz o mesmo da instrução acima
 
-        return view('property/index')->with('properties', $properties);//with -> jogando o objeto para a view
+        return view('property.index')->with('properties', $properties);//with -> jogando o objeto para a view
     }
 
     public function show($name){
@@ -22,14 +22,14 @@ class PropertyController extends Controller
         $property = Property::where('name', $name)->get(); //faz o mesmo que o cod acima
 
         if(!empty($property)) {
-            return view('property/show')->with('property', $property);
+            return view('property.show')->with('property', $property);
         } else{
             return redirect()->action('PropertyController@index');
         }
     }
 
     public function create() {
-        return view('property/create');
+        return view('property.create');
     }
 
     public function store(Request $request) {
@@ -61,7 +61,7 @@ class PropertyController extends Controller
     public function edit($name){
         $property = Property::where('name', $name)->get();
         if(!empty($property)){
-            return view('property/edit')->with('property', $property);
+            return view('property.edit')->with('property', $property);
         } else {
             return redirect()->action('PropertyController@index');
         }
