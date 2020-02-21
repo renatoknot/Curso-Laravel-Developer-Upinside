@@ -34,15 +34,26 @@ class PropertyController extends Controller
 
     public function store(Request $request) {
         $propertySlug = $this->setName($request->title);
+
+        // $property = [
+        //     $request->title,
+        //     $propertySlug,
+        //     $request->description,
+        //     $request->rental_price,
+        //     $request->sale_price
+        // ];
+        // DB::insert('INSERT into properties (title, name,  description, rental_price, sale_price) VALUES
+        //            (?, ?, ?, ?, ?)', $property);
+
+        //FAZENDO O MESMO ACIMA COM MODEL
         $property = [
-            $request->title,
-            $propertySlug,
-            $request->description,
-            $request->rental_price,
-            $request->sale_price
+            'title' => $request->title,
+            'name' => $propertySlug,
+            'description' => $request->description,
+            'rental_price' => $request->rental_price,
+            'sale_price' => $request->sale_price
         ];
-        DB::insert('INSERT into properties (title, name,  description, rental_price, sale_price) VALUES
-                   (?, ?, ?, ?, ?)', $property);
+        Property::create($property);// faz o insert
 
         return redirect()->action('PropertyController@index'); //Redirecionando para um controlador e um método
     }
@@ -59,16 +70,26 @@ class PropertyController extends Controller
     public function update(Request $request, $id){
         $propertySlug = $this->setName($request->title);
 
-        $property = [
-            $request->title,
-            $propertySlug,
-            $request->description,
-            $request->rental_price,
-            $request->sale_price,
-            $id
-        ];
-        DB::update('UPDATE properties SET
-        title = ?, name = ?, description = ?, rental_price = ?, sale_price = ? WHERE id = ?', $property);
+        // $property = [
+        //     $request->title,
+        //     $propertySlug,
+        //     $request->description,
+        //     $request->rental_price,
+        //     $request->sale_price,
+        //     $id
+        // ];
+        // DB::update('UPDATE properties SET
+        // title = ?, name = ?, description = ?, rental_price = ?, sale_price = ? WHERE id = ?', $property);
+
+        $property = Property::find($id);//encontrando o imovel
+
+        $property->title = $request->title;
+        $property->name = $propertySlug;
+        $property->description = $request->description;
+        $property->rental_price = $request->rental_price;
+        $property->sale_price = $request->sale_price;
+
+        $property->save();// salvando os novos dados
 
         return redirect()->action('PropertyController@index');
     }
