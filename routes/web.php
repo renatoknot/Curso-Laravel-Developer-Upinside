@@ -24,3 +24,5 @@ Route::get('/imoveis/{name}', 'PropertyController@show'); //visualizar mais
 
 Route::get('/imoveis/editar/{name}','PropertyController@edit');
 Route::put('/imoveis/update/{name}','PropertyController@update');//atualizar imovel
+
+Route::get('/imoveis/remover/{name}','PropertyController@destroy'); //exluir imovel
