@@ -2,7 +2,7 @@
 
 Primeiro projeto do curso, um CRUD de cadastro de imóveis, mostrando um pouco sobre o padrão MVC
 
-Repo parte 2: 
+Repo parte 2: https://github.com/renatoknot/-Curso-Laravel-Developer-Upinside-parte2
 
 Pensando em como fazer as anotações, tive a idéia de deixar registrado comandos e o que for passado na aula, neste documento online
 
